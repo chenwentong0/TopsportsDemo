@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/item_consult"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/tab_first" />
+
+    <item android:id="@+id/item_market"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/tab_second" />
+
+    <item android:id="@+id/item_datas"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/tab_three" />
+
+    <item android:id="@+id/item_settings"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/tab_four" />
+</menu>

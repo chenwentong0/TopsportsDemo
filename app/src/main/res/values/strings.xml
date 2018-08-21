@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="tab_first">首页</string>
+    <string name="tab_second">发现</string>
+    <string name="tab_three">数据</string>
+    <string name="tab_four">我的</string>
+</resources>
