@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.chenwentong.helloworld.ui.HomeFragment;
 import com.example.common.base.BaseActivity;
 import com.example.common.widget.adapter.ViewPagerAdapter;
