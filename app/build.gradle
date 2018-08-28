@@ -1,19 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.chenwentong.helloworld"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Enabling multidex support.
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            ndk {
+                // 需要将 x86 架构过滤掉
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+            }
+        }
+
+        debug {
+
+            ndk {
+                // 需要将 x86 架构过滤掉
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+            }
         }
     }
     configurations.all {
@@ -25,9 +41,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
     //依赖common项目
     implementation project(':common')
+    //腾讯云通信
+    implementation project(':presentation')
+    implementation 'com.meizu.flyme.internet:push-internal:3.6.3@aar'
 
     //检测内存泄露
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
@@ -35,7 +53,17 @@ dependencies {
     //日志打印
     implementation 'com.apkfuns.logutils:library:1.5.1.1'
 
+    implementation 'com.android.support:multidex:1.0.0'
     //========
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //recyclerView 的 adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
+    //腾讯bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
 
     //沉浸式状态栏
 //    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'

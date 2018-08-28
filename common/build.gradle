@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{abiFilters "armeabi"}
 
     }
 
@@ -21,15 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:appcompat-v7:26.1.0'
+    }
 
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
@@ -38,22 +38,18 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.2.0'
     //rxandroid
     compile 'io.reactivex.rxjava2:rxandroid:2.1.0'
-
     //Http请求绑定生命周期
     compile 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
     compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     compile 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
-
     //design包
     compile 'com.android.support:design:26.1.0'
-
-//    //recyclerview 的adapter封装
-//    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    //    //recyclerview 的adapter封装
+    //    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     //Vlayout
-    compile ('com.alibaba.android:vlayout:1.2.8@aar') {
+    compile('com.alibaba.android:vlayout:1.2.8@aar') {
         transitive = true
     }
-
     //图片加载框架glide
     compile('com.github.bumptech.glide:glide:4.5.0') {
         exclude group: 'com.android.support'
@@ -65,10 +61,8 @@ dependencies {
     compile('jp.wasabeef:glide-transformations:3.1.0') {
         exclude group: 'com.android.support'
     }
-
-    //butterknife
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Eventbus
     compile 'org.greenrobot:eventbus:3.1.1'
+    //腾讯x5内核
+    compile files('libs/tbs_sdk_thirdapp_v3.6.0.1325_43613_sharewithdownload_withoutGame_obfs_20180807_151115.jar')
 }

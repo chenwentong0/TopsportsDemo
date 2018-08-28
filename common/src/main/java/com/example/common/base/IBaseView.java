@@ -8,7 +8,8 @@ public interface IBaseView {
     /**
      * 设置presenter
      * @param basePresenter
+     * @return 对应的view接口
      */
-    void setPresenter(BasePresenter<? extends IBaseView> basePresenter);
+    IBaseView addPresenter(BasePresenter<? extends IBaseView> basePresenter);
 
 }

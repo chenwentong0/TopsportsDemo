@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.common" >
 
+    <application>
+        <meta-data android:name="com.tencent.rdm.uuid" android:value="6f8dcc10-4375-4caa-8e2e-01bfa2062882" />
+    </application>
 
 </manifest>

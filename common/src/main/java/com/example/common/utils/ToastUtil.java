@@ -8,19 +8,14 @@ import android.widget.Toast;
  */
 
 public class ToastUtil {
-    private static Context sContext;
-    private static boolean sIsInit;
+    private static Context sContext = BaseUtil.getContext();
 
-    public static void init(Context context) {
-        sContext = context;
-        sIsInit = true;
-    }
-
-    public static boolean isInit() {
-        return sIsInit;
-    }
 
     public static void showLongToast(String toast) {
         Toast.makeText(sContext, toast, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showShortToast(String toast) {
+        Toast.makeText(sContext, toast, Toast.LENGTH_SHORT).show();
     }
 }

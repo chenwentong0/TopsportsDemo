@@ -12,5 +12,8 @@
         <attr name="right_size" format="dimension"/>
         <attr name="right_img" format="reference"/>
         <attr name="left_img" format="reference"/>
+        <attr name="show_bottom_line" format="boolean"/>
+        <attr name="bottom_line_color" format="color|reference"/>
+        <attr name="can_back" format="boolean"/>
     </declare-styleable>
 </resources>

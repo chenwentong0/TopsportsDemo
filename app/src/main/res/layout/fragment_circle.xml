@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.common.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        app:title_text="x5内核浏览器">
+
+    </com.example.common.widget.TitleBar>
+
+    <include
+        layout="@layout/include_webview"
+        />
+
+</LinearLayout>

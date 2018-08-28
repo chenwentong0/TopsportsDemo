@@ -1,8 +1,10 @@
 package com.example.common.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -44,6 +46,10 @@ public class TitleBar extends RelativeLayout {
     private ImageView iv_right;
     private View rl_left;
     private View ll_right;
+    private View mBottomLine;
+    private boolean mShowBottomLine;
+    private int mBottomLineColor;
+    private boolean mCanBack;
 
 
     public TitleBar(Context context) {
@@ -69,12 +75,17 @@ public class TitleBar extends RelativeLayout {
         mLeftText = ta.getString(R.styleable.TitleBar_left_text);
         mLeftColor = ta.getColor(R.styleable.TitleBar_left_color, DEFAULT_TEXT_COLOR);
         mLeftSize = ta.getDimension(R.styleable.TitleBar_left_size, DEFAULT_SUBTITLE_SIZE);
-        mLeftDrawableId = ta.getResourceId(R.styleable.TitleBar_left_img, -1);
+        mLeftDrawableId = ta.getResourceId(R.styleable.TitleBar_left_img, R.drawable.ic_return);
 
         mRightText = ta.getString(R.styleable.TitleBar_right_text);
         mRightColor = ta.getColor(R.styleable.TitleBar_right_color, DEFAULT_TEXT_COLOR);
         mRightSize = ta.getDimension(R.styleable.TitleBar_right_size, DEFAULT_SUBTITLE_SIZE);
         mRightDrawableId = ta.getResourceId(R.styleable.TitleBar_right_img, -1);
+
+        mShowBottomLine = ta.getBoolean(R.styleable.TitleBar_show_bottom_line, true);
+        mBottomLineColor = ta.getResourceId(R.styleable.TitleBar_bottom_line_color, -1);
+
+        mCanBack = ta.getBoolean(R.styleable.TitleBar_can_back, false);
 
         ta.recycle();
     }
@@ -88,6 +99,7 @@ public class TitleBar extends RelativeLayout {
         iv_right = view.findViewById(R.id.iv_right);
         rl_left = findViewById(R.id.rl_left);
         ll_right = findViewById(R.id.ll_right);
+        mBottomLine = findViewById(R.id.bottom_line);
         setTitle(mTitleText);
         if (mTitleColor >= 0) {
             setTitleColor(mTitleColor);
@@ -103,6 +115,26 @@ public class TitleBar extends RelativeLayout {
         setRightTextSize(mRightSize);
         setRightextColor(mRightColor);
         setRightDrawable(mRightDrawableId);
+
+        if (mBottomLineColor > 0) {
+            mBottomLine.setBackgroundColor(mBottomLineColor);
+        }
+        mBottomLine.setVisibility(mShowBottomLine ? VISIBLE : GONE);
+
+        if (mCanBack) {
+            setLeftClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (getContext() instanceof Activity) {
+                        ((Activity)getContext()).finish();
+                    }
+                }
+            });
+        }
+    }
+
+    public void showBottomLine(boolean showBottomLine) {
+        mBottomLine.setVisibility(showBottomLine ? VISIBLE : GONE);
     }
 
     public void setRightDrawable(int rightDrawableId) {
@@ -186,5 +218,6 @@ public class TitleBar extends RelativeLayout {
     public void setRightClickListener(OnClickListener listener) {
         ll_right.setOnClickListener(listener);
     }
+
 
 }
