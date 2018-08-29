@@ -149,7 +149,7 @@ public class ChatActivity extends BaseActivity implements ChatView {
         });
 
         //注册列表item长按弹出菜单事件
-        registerForContextMenu(mRecyclerView);
+//        registerForContextMenu(mRecyclerView);
 
         initTitle();
         mPresenter.start();
@@ -197,60 +197,60 @@ public class ChatActivity extends BaseActivity implements ChatView {
         }
     }
 
-    /**
-     * 添加上下文菜单
-     *
-     * @param menu
-     * @param v
-     * @param menuInfo
-     */
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        Message message = mMessageList.get(info.position);
-        menu.add(0, 1, Menu.NONE, getString(R.string.chat_del));
-        if (message.isSendFail()) {
-            menu.add(0, 2, Menu.NONE, getString(R.string.chat_resend));
-        } else if (message.getMessage().isSelf()) {
-            menu.add(0, 4, Menu.NONE, getString(R.string.chat_pullback));
-        }
-        if (message instanceof ImageMessage || message instanceof FileMessage) {
-            menu.add(0, 3, Menu.NONE, getString(R.string.chat_save));
-        }
-    }
-
-    /**
-     * 点击菜单item的回调
-     *
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Message message = mMessageList.get(info.position);
-        switch (item.getItemId()) {
-            case 1:
-                message.remove();
-                mMessageList.remove(info.position);
-                mAdapter.notifyDataSetChanged();
-                break;
-            case 2:
-                mMessageList.remove(message);
-                mPresenter.sendMessage(message.getMessage());
-                break;
-            case 3:
-                message.save();
-                break;
-            case 4:
-                mPresenter.revokeMessage(message.getMessage());
-                break;
-            default:
-                break;
-        }
-        return super.onContextItemSelected(item);
-    }
+//    /**
+//     * 添加上下文菜单
+//     *
+//     * @param menu
+//     * @param v
+//     * @param menuInfo
+//     */
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//        Message message = mMessageList.get(info.position);
+//        menu.add(0, 1, Menu.NONE, getString(R.string.chat_del));
+//        if (message.isSendFail()) {
+//            menu.add(0, 2, Menu.NONE, getString(R.string.chat_resend));
+//        } else if (message.getMessage().isSelf()) {
+//            menu.add(0, 4, Menu.NONE, getString(R.string.chat_pullback));
+//        }
+//        if (message instanceof ImageMessage || message instanceof FileMessage) {
+//            menu.add(0, 3, Menu.NONE, getString(R.string.chat_save));
+//        }
+//    }
+//
+//    /**
+//     * 点击菜单item的回调
+//     *
+//     * @param item
+//     * @return
+//     */
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item) {
+//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//        Message message = mMessageList.get(info.position);
+//        switch (item.getItemId()) {
+//            case 1:
+//                message.remove();
+//                mMessageList.remove(info.position);
+//                mAdapter.notifyDataSetChanged();
+//                break;
+//            case 2:
+//                mMessageList.remove(message);
+//                mPresenter.sendMessage(message.getMessage());
+//                break;
+//            case 3:
+//                message.save();
+//                break;
+//            case 4:
+//                mPresenter.revokeMessage(message.getMessage());
+//                break;
+//            default:
+//                break;
+//        }
+//        return super.onContextItemSelected(item);
+//    }
 
     @Override
     protected void onPause() {

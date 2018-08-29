@@ -1,1 +1,1 @@
-include ':app', ':sdk', ':common', ':tlslibrary', ':presentation'
+include ':app', ':sdk', ':common', ':tlslibrary', ':presentation', ':nimsdk', ':uikit'

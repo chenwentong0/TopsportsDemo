@@ -43,6 +43,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     //依赖common项目
     implementation project(':common')
+    //网易云通信
+    implementation project(':nimsdk')
+    implementation project(':uikit')
     //腾讯云通信
     implementation project(':presentation')
     implementation 'com.meizu.flyme.internet:push-internal:3.6.3@aar'
@@ -64,6 +67,8 @@ dependencies {
 
     //腾讯bugly
     compile 'com.tencent.bugly:crashreport:latest.release'
+
+//    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 
     //沉浸式状态栏
 //    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'

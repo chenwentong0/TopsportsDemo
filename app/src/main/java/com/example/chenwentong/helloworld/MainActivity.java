@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity {
         viewPagerAdapter.addFragment(CircleFragment.newInstance());
         viewPagerAdapter.addFragment(HomeFragment.newInstance(getString(R.string.tab_four)));
         mViewPager.setAdapter(viewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(4);
         initBottomNavigation();
 
     }

@@ -16,4 +16,9 @@
         <attr name="bottom_line_color" format="color|reference"/>
         <attr name="can_back" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="ClearableEditTextWithIcon">
+        <attr name="et_clear_res" format="reference"/>
+        <attr name="et_left_res" format="reference"/>
+    </declare-styleable>
 </resources>

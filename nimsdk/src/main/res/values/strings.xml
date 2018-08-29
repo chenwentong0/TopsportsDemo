@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">nimSDK</string>
+    <string name="login_hint_account">请输入账号名</string>
+    <string name="login_hint_password">请输入密码</string>
+    <string name="input_nickname">输入昵称</string>
+    <string name="register">注册</string>
+</resources>

@@ -185,6 +185,14 @@ public class TitleBar extends RelativeLayout {
         return tv_title;
     }
 
+    public TextView getTvLeft() {
+        return tv_left;
+    }
+
+    public TextView getTvRight() {
+        return tv_right;
+    }
+
     public ImageView getIvRight() {
         return iv_right;
     }
@@ -219,5 +227,7 @@ public class TitleBar extends RelativeLayout {
         ll_right.setOnClickListener(listener);
     }
 
-
+    public ImageView getIvLeft() {
+        return iv_left;
+    }
 }

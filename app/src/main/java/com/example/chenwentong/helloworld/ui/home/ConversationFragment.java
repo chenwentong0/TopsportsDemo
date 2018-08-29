@@ -102,14 +102,11 @@ public class ConversationFragment extends BaseFragment implements ConversationVi
     }
 
     @Override
-    protected void onVisible() {
-        super.onVisible();
-        if (hasInit()) {
-            if (mAdapter.getItemCount() != 0) {
-                mAdapter.notifyDataSetChanged();
-            } else {
-                mPresenter.getConversationList();
-            }
+    protected void onVisibleRefresh() {
+        if (mAdapter.getItemCount() != 0) {
+            mAdapter.notifyDataSetChanged();
+        } else {
+            mPresenter.getConversationList();
         }
     }
 

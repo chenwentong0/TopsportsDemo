@@ -2,27 +2,23 @@ package com.example.chenwentong.helloworld;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.multidex.MultiDex;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.chenwentong.helloworld.common.Constants;
-import com.example.chenwentong.helloworld.utils.AppUtil;
+import com.example.chenwentong.helloworld.common.NimSDKOptionConfig;
 import com.example.common.utils.BaseUtil;
-import com.example.common.utils.ToastUtil;
+import com.example.common.utils.CacheDiskUtils;
 import com.example.common.utils.imageutil.ImageLoader;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.auth.LoginInfo;
+import com.netease.nimlib.sdk.util.NIMUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.imsdk.TIMLogLevel;
-import com.tencent.imsdk.TIMManager;
-import com.tencent.imsdk.TIMSdkConfig;
 import com.tencent.qcloud.presentation.business.InitBusiness;
 import com.tencent.qcloud.tlslibrary.service.TlsBusiness;
 import com.tencent.smtt.sdk.QbSdk;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,6 +45,15 @@ public class App extends Application {
     }
 
     private void initSdk() {
+        // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
+        NIMClient.init(this, loginInfo(), NimSDKOptionConfig.options());
+        if (NIMUtil.isMainProcess(this)) {
+            // 注意：以下操作必须在主进程中进行
+            // 1、UI相关初始化操作
+            // 2、相关Service调用
+        }
+
+
         InitBusiness.start(getApplicationContext(), TIMLogLevel.DEBUG, Constants.IM_APP_ID);
         TlsBusiness.init(getApplicationContext());
 
@@ -91,6 +96,14 @@ public class App extends Application {
         });
         //腾讯bugly初始化 第三个参数为SDK调试模式开关，建议在测试阶段建议设置成true，发布时设置为false。crash日志上报
         CrashReport.initCrashReport(getContext(), Constants.BUGLY_APP_ID, true);
+    }
+
+    private LoginInfo loginInfo() {
+        Object serializable = CacheDiskUtils.getInstance().getSerializable(Constants.NIM_LOGININFO_KEY);
+        if (serializable != null) {
+            return (LoginInfo) serializable;
+        }
+        return null;
     }
 
     private void initUtil() {

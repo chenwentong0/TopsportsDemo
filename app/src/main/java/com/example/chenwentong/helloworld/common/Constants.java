@@ -18,5 +18,12 @@ public interface Constants {
 
     String BUGLY_APP_ID = "f7360f6255";
 
+    String NIM_APPKEY = "7aafe5636ca37a356226a57b020a43ee";
+
+    String NIM_APP_SECRET = "b5a910c9a6ca";
+
+    String NIM_ACCOUNT_KEY = "NIM_ACCOUNT_KEY";
+    String NIM_TOKEN_KEY = "NIM_TOKEN_KEY";
+    String NIM_LOGININFO_KEY = "NIM_LOGININFO_KEY";
 
 }

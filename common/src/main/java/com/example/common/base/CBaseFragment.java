@@ -114,6 +114,13 @@ public abstract class CBaseFragment extends RxLifeFragment implements IBaseView 
     protected void onVisible() {
         isFragmentVisible = true;
         lazyLoad();
+        if (hasInit()) {
+            onVisibleRefresh();
+        }
+    }
+
+    protected void onVisibleRefresh() {
+
     }
 
     /**
@@ -200,5 +207,11 @@ public abstract class CBaseFragment extends RxLifeFragment implements IBaseView 
         return this;
     }
 
-
+    /**
+     * 设置是否强制刷新
+     * @param forceLoad
+     */
+    public void setForceLoad(boolean forceLoad) {
+        this.forceLoad = forceLoad;
+    }
 }
